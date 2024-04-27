@@ -1,0 +1,580 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - nice talking to you.
+    - cya
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - true
+    - amazing
+    - ok
+    - okay
+    - yeah
+    
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - not
+    - nope
+    - absolutely not
+    - don't do
+    - bye
+    - exit
+
+# Creating a lookup for location entity
+
+- lookup: location
+  examples: |
+    - Mumbai
+    - Delhi
+    - Bangalore
+    - Hyderabad
+    - Ahmedabad
+    - Chennai
+    - Kolkata
+    - Surat
+    - Pune
+    - Jaipur
+    - Lucknow
+    - Kanpur
+    - Nagpur
+    - Indore
+    - Thane
+    - Bhopal
+    - Visakhapatnam
+    - Pimpri-Chinchwad
+    - Patna
+    - Vadodara
+    - Ghaziabad
+    - Ludhiana
+    - Agra
+    - Nashik
+    - Ranchi
+    - Faridabad
+    - Meerut
+    - Rajkot
+    - Kalyan-Dombivli
+    - Vasai-Virar
+    - Varanasi
+    - Srinagar
+    - Aurangabad
+    - Dhanbad
+    - Amritsar
+    - Navi Mumbai
+    - Allahabad
+    - Howrah
+    - Gwalior
+    - Jabalpur
+    - Coimbatore
+    - Vijayawada
+    - Jodhpur
+    - Madurai
+    - Raipur
+    - Kota
+    - Chandigarh
+    - Guwahati
+    - Solapur
+    - Hubli–Dharwad
+    - Mysore
+    - Tiruchirappalli
+    - Bareilly
+    - Aligarh
+    - Tiruppur
+    - Gurgaon
+    - Moradabad
+    - Jalandhar
+    - Bhubaneswar
+    - Salem
+    - Warangal
+    - Mira-Bhayandar
+    - Jalgaon
+    - Guntur
+    - Thiruvananthapuram
+    - Bhiwandi
+    - Saharanpur
+    - Gorakhpur
+    - Bikaner
+    - Amravati
+    - Noida
+    - Jamshedpur
+    - Bhilai
+    - Cuttack
+    - Firozabad
+    - Kochi
+    - Nellore
+    - Bhavnagar
+    - Dehradun
+    - Durgapur
+    - Asansol
+    - Rourkela
+    - Nanded
+    - Kolhapur
+    - Ajmer
+    - Akola
+    - Gulbarga
+    - Jamnagar
+    - Ujjain
+    - Loni
+    - Siliguri
+    - Jhansi
+    - Ulhasnagar
+    - Jammu
+    - Sangli-Miraj & Kupwad
+    - Mangalore
+    - Erode
+    - Belgaum
+    - Kurnool
+    - Ambattur
+    - Rajahmundry
+    - Tirunelveli
+    - Malegaon
+    - Gaya
+    - Tirupati
+    - Udaipur
+    - Kakinada
+    - Davanagere
+    - Kozhikode
+    - Maheshtala
+    - Rajpur Sonarpur
+    - Bokaro
+    - South Dumdum
+    - Bellary
+    - Patiala
+    - Gopalpur
+    - Agartala
+    - Bhagalpur
+    - Muzaffarnagar
+    - Bhatpara
+    - Panihati
+    - Latur
+    - Dhule
+    - Rohtak
+    - Sagar
+    - Korba
+    - Bhilwara
+    - Berhampur
+    - Muzaffarpur
+    - Ahmednagar
+    - Mathura
+    - Kollam
+    - Avadi
+    - Kadapa
+    - Anantapuram
+    - Kamarhati
+    - Bilaspur
+    - Sambalpur
+    - Shahjahanpur
+    - Satara
+    - Bijapur
+    - Rampur
+    - Shimoga
+    - Chandrapur
+    - Junagadh
+    - Thrissur
+    - Alwar
+    - Bardhaman
+    - Kulti
+    - Nizamabad
+    - Parbhani
+    - Tumkur
+    - Khammam
+    - Uzhavarkarai
+    - Bihar Sharif
+    - Panipat
+    - Darbhanga
+    - Bally
+    - Aizawl
+    - Dewas
+    - Ichalkaranji
+    - Karnal
+    - Bathinda
+    - Jalna
+    - Eluru
+    - Barasat
+    - Kirari Suleman Nagar
+    - Purnia
+    - Satna
+    - Mau
+    - Sonipat
+    - Farrukhabad
+    - Durg
+    - Imphal
+    - Ratlam
+    - Hapur
+    - Arrah
+    - Anantapur
+    - Karimnagar
+    - Etawah
+    - Ambarnath
+    - North Dumdum
+    - Bharatpur
+    - Begusarai
+    - New Delhi
+    - Gandhidham
+    - Baranagar
+    - Tiruvottiyur
+    - Pondicherry
+    - Sikar
+    - Thoothukudi
+    - Rewa
+    - Mirzapur
+    - Raichur
+    - Pali
+    - Ramagundam
+    - Silchar
+    - Haridwar
+    - Vijayanagaram
+    - Tenali
+    - Nagercoil
+    - Sri Ganganagar
+    - Karawal Nagar
+    - Mango
+    - Thanjavur
+    - Bulandshahr
+    - Uluberia
+    - Katni
+    - Sambhal
+    - Singrauli
+    - Nadiad
+    - Secunderabad
+    - Naihati
+    - Yamunanagar
+    - Bidhannagar
+    - Pallavaram
+    - Bidar
+    - Munger
+    - Panchkula
+    - Burhanpur
+    - Raurkela Industrial Township
+    - Kharagpur
+    - Dindigul
+    - Gandhinagar
+    - Hospet
+    - Nangloi Jat
+    - Malda
+    - Ongole
+    - Deoghar
+    - Chapra
+    - Haldia
+    - Khandwa
+    - Nandyal
+    - Morena
+    - Amroha
+    - Anand
+    - Bhind
+    - Bhalswa Jahangir Pur
+    - Madhyamgram
+    - Bhiwani
+    - Berhampore
+    - Ambala
+    - Morbi
+    - Fatehpur
+    - Raebareli
+    - Khora
+    - Chittoor
+    - Bhusawal
+    - Orai
+    - Bahraich
+    - Phusro
+    - Vellore
+    - Mehsana
+    - Raiganj
+    - Sirsa
+    - Danapur
+    - Serampore
+    - Sultan Pur Majra
+    - Guna
+    - Jaunpur
+    - Panvel
+    - Shivpuri
+    - Surendranagar Dudhrej
+    - Unnao
+    - Chinsurah
+    - Alappuzha
+    - Kottayam
+    - Machilipatnam
+    - Shimla
+    - Adoni
+    - Udupi
+    - Katihar
+    - Proddatur
+    - Mahbubnagar
+    - Saharsa
+    - Dibrugarh
+    - Jorhat
+    - Hazaribagh
+    - Hindupur
+    - Nagaon
+    - Sasaram
+    - Hajipur
+    - Port Blair
+    - Giridih
+    - Bhimavaram
+    - Kumbakonam
+    - Bongaigaon
+    - Dehri
+    - Madanapalle
+    - Siwan
+    - Bettiah
+    - Ramgarh
+    - Tinsukia
+    - Guntakal
+    - Srikakulam
+    - Motihari
+    - Dharmavaram
+    - Medininagar
+    - Gudivada
+    - Phagwara
+    - Pudukkottai
+    - Hosur
+    - Narasaraopet
+    - Suryapet
+    - Miryalaguda
+    - Tadipatri
+    - Karaikudi
+    - Kishanganj
+    - Jamalpur
+    - Ballia
+    - Kavali
+    - Tadepalligudem
+    - Amaravati
+    - Buxar
+    - Tezpur
+    - Jehanabad
+    - Aurangabad
+    - Gangtok
+    - Vasco Da Gama
+
+# Creating the lookup table for Cuisine 
+
+- lookup: cuisine
+  examples: |
+    - Chinese
+    - Mexican
+    - Italian
+    - American
+    - South Indian
+    - North Indian
+    
+# Creating common synonyms for few commonly misspelled cities
+
+- synonym: New Delhi
+  examples: |
+    - Delhi
+    - dilli
+    - billi
+    - dili
+    - n delhi
+    
+- synonym: Gurgaon
+  examples: |
+    - gurugram
+    - gudgaon
+    
+- synonym: Bhubaneshwar
+  examples: |
+    - bhubneswar
+    - bhuneswar
+    
+- synonym: Mumbai
+  examples: |
+    - bambai
+    - bombay
+
+- synonym: Mysore
+  examples: |
+    - mysuru
+    - mysur
+    
+- synonym: Puducherry
+  examples: |
+    - pondi
+    - pondicherry
+
+- synonym: Bangalore
+  examples: |
+    - namma bangalore
+    - bengaluru
+    - bangalor
+    - bengalur
+    - banglore
+    - bangaluru
+    - bangalur
+
+  
+# This is the intent for restaurant search
+
+- intent: restaurant_search
+  examples: |
+    - i'm looking for a place to eat
+    - I want to grab lunch
+    - I’m hungry. Looking out for some good restaurants
+    - I am searching for a dinner spot
+    - I am hungry. Looking for some good [Chinese](cuisine) restaurants in [Chandigarh](location)
+    - Can you suggest some good restaurants in [Bhubaneshwar](location)
+    - i'm looking for a place to eat within price [500](price)
+    - I want to grab lunch for [200](price)
+    - Okay. Show me some in [Hyderabad](location)
+    - I am searching for a dinner spot where price is nearly [600](price)
+    - I am looking for some restaurants in [Delhi](location:New Delhi).
+    - Show me some [North Indian](cuisine) restaurants in [Delhi](location:New Delhi) within [500](price)
+    - I am looking for some restaurants in [Bangalore](location)
+    - I am looking for some restaurants in [bengaluru](location:Bangalore) within [400](price) rs
+    - I am looking for some restaurants in [bengaluru](location:Bangalore) under [700](price) rs
+    - I am looking for some restaurants in [Delhi](location:New Delhi) budget is [200](price)
+    - I am looking for some restaurants in [Bangalore](location) 
+    - I am looking for some restaurants in [Dilli](location:New Delhi) budget is [1000](price)
+    - show me [chinese](cuisine) restaurants
+    - Within [200-300](price) show some good restaurants
+    - In [200 to 600](price) show some restaurants
+    - Show some restaurants in [500](price)
+    - Show some [North Indian] restaurants in [New Delhi](location)
+    - I am looking for [North Indian](cuisine) in [New Delhi](location)
+    - For budget of [600](price) show some restaurants
+    - Looking for some restaurants between [400 to 600](price)
+    - Show some good restaurants within in [350 to 450](price) in [Delhi](location:New Delhi)
+    - Within [200-300](price) show some good restaurants in [bombay](location:Mumbai)
+    - In [Bangalore](location) show some restaurants within [200 to 600](price) price range
+    - Show some restaurants [Ranchi](location) in  within [500](price)
+    - For budget of [600](price) show some restaurants in [Patna](location)
+    - Looking for some restaurants between [400 to 600](price) in [Ranchi](location)
+    - Show some restaurants within in [350 to 450](price) in [Delhi](location:New Delhi)
+    - Show me some [North Indian](cuisine) restaurants within [700](price) in [Kolkata](location)
+    - Show some [South Indian](cuisine) restaurants within [700](price) in [Mumbai](location)
+    - show me [chines](cuisine:chinese) restaurants in the [New Delhi](location)
+    - i am looking for an [North India](cuisine) spot in [Mumbai](location) within [500 to 800](price)
+    - i am looking for an [North India](cuisine) spot in [Bombay](location:Mumbai) within [500 to 800](price)
+    - show me a [mexican](cuisine) place in the [centre](location)
+    - i am looking for an [indian](cuisine) spot called olaolaolaolaolaola
+    - search for restaurants
+    - find restaurants
+    - I am looking for [Italian](cuisine) food
+    - I am looking a restaurant in [mysuru](location)
+    - in [Gurgaon](location)
+    - [South Indian](cuisine)
+    - [North Indian](cuisine)
+    - [Italian](cuisine)
+    - [Chinese](cuisine:chinese)
+    - [chinese](cuisine)
+    - in [delhi](location:New Delhi)
+    - okay in [Kochi](location)
+    - I am looking for some restaurants in [Mumbai](location)
+    - I am looking for [Mexican(cuisine)
+    - [bombay](location) [American](cuisine) restaurant
+    - please help me to find restaurants in [pune](location)
+    - Please find me a restaurantin [bangalore](location)
+    - would like to eat [mexican](cuisine) in [mumbai](location)
+    - i need some [North indian](cuisine) food in [bengaluru](location)
+    - i am looking for [American](cuisine) food in [bombay](location:Mumbai)
+    - [mumbai](location)
+    - [Italian](cuisine)
+    - please find me [chinese](cuisine) restaurant in [delhi](location)
+    - can you find me a [chinese](cuisine) restaurant
+    - [delhi](location)
+    - please find me a restaurant in [ahmedabad](location)
+    - find [chinese](cuisine) restaurants in [delhi]{"entity": "location", "value": "New Delhi"}
+    - [300-700](price)
+    - find [chinese](cuisine) restaurants
+    - [delhi]{"entity": "location", "value": "New Delhi"}
+    - [0-300](price)
+    - [700](price)
+    - find [chinese](cuisine) restaurants in [indore](location)
+    - find [chinese](cuisine) restaurants in [xyz](location) under [1000](price)
+    - find [North Indian](cuisine) restaurants in [Ranchi](location)
+    - search restaurants in [Amritsar](location)
+    - search restaurants in [Vizag](location)
+    - find [North Indian](cuisine) restaurants in [Lucknow](location)
+    - search restaurants in [Kanpur](location)
+    - search [Italian](cuisine) restaurants in [Bhopal](location)
+    - search restaurants in [Hyderabad](location)
+    - search restaurants in [Jaipur](location)
+    - search [South Indian](cuisine) restaurants in [Goa](location)
+    - search restaurants in [Chandigarh](location)
+    - search restaurants in [Ooty](location)
+    - search restaurants in [Shimla](location)
+    - find [South Indian](cuisine) restaurants in [indore](location)
+    - find [Italian](cuisine) restaurants in [rarasfd](location) under [1000](price)
+    - i am looking for an [North Indian](cuisine) spot in [sasdaad](location) within [500 to 800](price)
+    - find restaurants in [Rajkot](location)
+    - search restaurants in [Kanpur](location)
+    - search restaurants in [Nagpur](location)
+    - find restaurants in [Thane](location)
+    - find restaurants in [Katni](location)
+    - search restaurants in [Srinagar](location)
+    - find restaurants in [Rajkot](location)
+    - [Rajkot](location)
+    - [indore](location)
+    - [Satna](location)
+    - [Buxar](location)
+    - [Aurangabad](location)
+    - [Jehanabad](location)
+    - search restaurants in [Jehanabad](location)
+    - [Kota](location)
+    - search restaurants in [Kota](location)
+    - search restaurants in [Satna](location)
+    - find restaurants in [Guna](location)
+    - find restaurants in [Etawah](location)
+    
+- intent: email_of_user
+  examples: |
+    - My email is [utk@gmail.com](email_id)
+    - Sure Thanks. My email is [baja@yahoo.com](email_id)
+    - Yes please. [utkarsh@gmail.com](email_id)
+    - yup my email is [faraz.com@gmail.com](email_id)
+    - Yeah. Email is [lol@lolo.com](email_id)
+    - Yes, email is [luli@nuli.com](email_id)
+    - [ahbcdj@dkj.com](email_id)
+    - [jddk.2jmd@kdl.co.in](email_id)
+    - can u mail me the information to [abc@abeddc.com](email_id)?
+    - can u mail to [teeest@tes.com](email_id)?
+    - can u mail me at [test-123.456@dom.123.co.in](email_id)?
+    - email address - [test.some@gmail.co.in](email_id). Mail this list.
+    - email me at [email-123@domina.com](email_id)
+    - mail me [emial@domain.io](email_id)
+    - please send this to [email.123@123.456.com](email_id)
+    - send this to [abc-email@abc.com](email_id)
+    - send to [abc_123-email@abc123.com](email_id)
+    - this is my email address - [email-abc_123@abc.com.edu](email_id) send me an email.
+    - yes please send it on [sample@iiit.edu.com](email_id)

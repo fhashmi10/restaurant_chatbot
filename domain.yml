@@ -1,0 +1,108 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - restaurant_search
+  - email_of_user
+
+entities:
+- cuisine
+- location
+- price
+- email_id
+
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+  price:
+    type: text
+    influence_conversation: true
+  email_id:
+    type: text
+    influence_conversation: true
+  deliver_to_location:
+    type: bool
+    influence_conversation: true
+
+
+responses:
+  utter_greet:
+  - text: "Hey! Hope everything is great. How may I help you?"
+  - text: "Heya! How may I help today?"
+  - text: "Hello! Hope you are well. What would you like to have today?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+  - text: "Nice to hear this."
+  - text: "Awesome."
+
+  utter_show_input:
+  - text: "Sit tight we are looking restaurants in {location} for {cuisine} cuisine where average cost for two is {price}"
+  - text: "Relax, we are looking restaurants in {location} for {cuisine} cuisine where average cost for two is {price}"
+  - text: "Searching {cuisine} cuisine in {location}, where average cost for two is {price}"
+
+  utter_goodbye:
+  - text: "Enjoy your meal! Bye bye"
+  - text: "Enjoy your day! Bye."
+  - text: "Have a nice day!"
+
+  utter_ask_location:
+  - text: "Please enter the location for search."
+  - text: "For what location you want to search?"
+  - text: "Please enter the location."
+
+  utter_we_do_not_serve:
+  - text: "Oops! We do not deliver there yet!"
+  - text: "We do not operate in {location} yet!"
+  
+  utter_want_to_send_email:
+  - text: Do you want this email over you email?
+  - text: Want to get email for this?
+  - text: Shall we send this on your email?
+  
+  utter_ask_email:
+  - text: What is your email ID?
+  - text: Please provide your email.
+  - text: Enter email.
+
+  utter_ask_cuisine:
+  - text: what kind of cuisine would you like?
+    buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    - payload: Mexican
+      title: Mexican
+    
+
+  utter_ask_price:
+  - text: What should be the average price for two?
+    buttons:
+    - payload: 0-300
+      title: Less than Rs.300
+    - payload: 300-700
+      title: Rs.300 to Rs.700
+    - payload: ">700"
+      title: More than Rs.700
+
+actions:
+  - action_search_restaurants
+  - action_check_location
+  - action_send_email
+  - action_slot_reset
+  
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

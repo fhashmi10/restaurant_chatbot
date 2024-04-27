@@ -1,0 +1,572 @@
+version: "2.0"
+
+stories:
+ 
+
+# Story Line 1: In below stories no entities are provided, ex: Find restaurants
+
+- story: no entities provided, location not in tier 3
+  steps:
+  - intent: greet                       # user message with no entities
+  - action: utter_greet
+  - intent: restaurant_search           # user message with entities
+  - action: utter_ask_location
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+- story: no entities provided, yes to email
+  steps:
+  - intent: greet                       # user message with no entities
+  - action: utter_greet
+  - intent: restaurant_search           # user message with entities
+  - action: utter_ask_location
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 0-300
+  - slot_was_set:
+    - price: 0-300
+  - action: action_search_restaurants   # action that the bot should execute
+  - action: utter_want_to_send_email
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+   
+- story: no entities provided, email directly given with affirm intent
+  steps:
+  - intent: greet                       # user message with no entities
+  - action: utter_greet
+  - intent: restaurant_search           # user message with entities
+  - action: utter_ask_location
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 0-300
+  - slot_was_set:
+    - price: 0-300
+  - action: action_search_restaurants   # action that the bot should execute
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye 
+
+- story: no entities provided, no to email
+  steps:
+  - intent: greet                       # user message with no entities
+  - action: utter_greet
+  - intent: restaurant_search           # user message with entities
+  - action: utter_ask_location
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 0-300
+  - slot_was_set:
+    - price: 0-300
+  - action: action_search_restaurants   # action that the bot should execute
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+  
+# Story Line 1: END ------------------------------------------------------------------
+ 
+
+# Story Line 2: In below stories all entities are input at once
+- story: All input but location is tier3 # name of the story - just for debugging
+  steps:
+  - intent: greet                       # user message with no entities
+  - action: utter_greet
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - location: "New Delhi"
+    - cuisine: "South Indian"
+    - price: '500-600'
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - price: '500'
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: All input and location is tier1, email affirm 
+  steps:
+  - intent: greet                       
+  - action: utter_greet
+  - intent: restaurant_search           
+    entities:
+    - location: "Ranchi"
+    - cuisine: "South Indian"
+    - price: "500 to 600"
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - price: '500 to 600'
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: action_search_restaurants   
+  - action: utter_want_to_send_email
+  - intent: affirm
+  - action: utter_ask_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: All input and location is tier1, email directly given 
+  steps:
+  - intent: greet                       
+  - action: utter_greet
+  - intent: restaurant_search           
+    entities:
+    - location: "Ranchi"
+    - cuisine: "South Indian"
+    - price: "500 to 600"
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: Bangalore
+  - slot_was_set:
+    - price: '500 to 600'
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: action_search_restaurants   
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: All input and location is tier1, email deny 
+  steps:
+  - intent: greet                       
+  - action: utter_greet
+  - intent: restaurant_search          
+    entities:
+    - location: "Ranchi"
+    - cuisine: "South Indian"
+    - price: "600 to 800"
+  - slot_was_set:
+    - cuisine: South Indian
+  - slot_was_set:
+    - location: Ranchi
+  - slot_was_set:
+    - price: '600 to 800'
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: action_search_restaurants   
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+# Story Line 2: END ------------------------------------------------------------------
+
+# Story Line 3: Only Cuisine was provided
+  
+- story: search when cusine provided, incorrect location
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: depalpur
+  - slot_was_set:
+    - location: depalpur
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+- story: search when cusine provided, yes to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 0-300
+  - slot_was_set:
+    - price: 0-300
+  - action: action_search_restaurants   # action that the bot should execute
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+- story: search when cusine provided, no to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 0-300
+  - slot_was_set:
+    - price: 0-300
+  - action: action_search_restaurants   # action that the bot should execute
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+
+# Story Line 3: END ------------------------------------------------------------------
+ 
+
+# Story Line 4: Location and Cuisine was provided
+  
+- story: search when cusine and location provided, incorrect location
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+    - location: satna
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: satna
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: search when cusine and location provided, yes to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+    - location: New Delhi
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+- story: search when cusine and location provided, no to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+    - location: New Delhi
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+# Story Line 3: END ------------------------------------------------------------------
+ 
+
+# Story Line 4: Only Location was provided
+ 
+- story: search when location provided, incorrect location
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: buxar
+  - slot_was_set:
+    - location: buxar
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: search when location provided, yes to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+  
+- story: search when location provided, no to email
+  steps:
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: utter_ask_price
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
+ 
+
+# Story Line 4: END ------------------------------------------------------------------
+ 
+# Story Line 5: Conversation starts with Price, 
+
+- story: price given ask rest, no other info, unserved location
+  steps:
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: false
+  - action: utter_we_do_not_serve
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: price given ask rest, no other info, served location, email true
+  steps:
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: email_of_user
+    entities:
+    - email_id: "utkarsh@gmail.com"
+  - slot_was_set:
+    - email_id: "utkarsh@gmail.com"
+  - action: action_send_email
+  - action: action_slot_reset
+  - action: utter_goodbye
+
+- story: price given ask rest, no other info, served location, email deny
+  steps:
+  - intent: restaurant_search
+    entities:
+    - price: 300-700
+  - slot_was_set:
+    - price: 300-700
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: New Delhi
+  - slot_was_set:
+    - location: New Delhi
+  - action: action_check_location
+  - slot_was_set:
+    - deliver_to_location: true
+  - action: utter_ask_cuisine
+  - intent: restaurant_search           # user message with entities
+    entities:
+    - cuisine: Italian
+  - slot_was_set:
+    - cuisine: Italian
+  - action: action_search_restaurants
+  - action: utter_want_to_send_email
+  - intent: deny
+  - action: action_slot_reset
+  - action: utter_goodbye
